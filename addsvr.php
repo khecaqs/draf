@@ -4,10 +4,10 @@
 $cae=oci_connect("ae","1","localhost:1521/xe");
 
 //*** Insert Data Command ***//
-$strSQL = "INSERT INTO SEVERLIST ";
-$strSQL .="(SVRID,SVRNAME,SVRIP,SVRDNS) ";
+$strSQL = "INSERT INTO svrident ";
+$strSQL .="(SVRID,SVRNAME,SVRDNS,SVRIP,SVRDESC) ";
 $strSQL .="VALUES ";
-$strSQL .="('".$_POST["txtSvrID"]."','".$_POST["txtSvrNama"]."','".$_POST["txtSvrIP"]."','".$_POST["txtSvrDNS"]."') ";
+$strSQL .="('".$_POST["txtSvrID"]."','".$_POST["txtSvrNama"]."','".$_POST["txtSvrDNS"]."','".$_POST["txtSvrIP"]."','".$_POST["txtSvrDesc"]."') ";
 
 
 //*** Define Variable $objParse and $objExecute ***//
