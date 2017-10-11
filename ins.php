@@ -86,7 +86,7 @@ include_once("conn/c.php");
 
 	
 	</td>
-    <td align="right"><input name="txtSid" type="text" size="20" maxlength="50" id="txtSid"></td>
+    <td align="right"><input name="txtOraSid" type="text" size="20" maxlength="50" id="txtOraSid"></td>
   </tr>
 </table>
 <input type="submit" name="submit" value="submit">

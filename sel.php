@@ -25,7 +25,7 @@ if( !oci_execute($stid) )
 //var_dump( $data );
 ?>
 
-<select>
+<select name="Svrid" id="Svrid">
 			<?php
 			while (($row = oci_fetch_array($stid, OCI_BOTH)) != false) {
 				
