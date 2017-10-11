@@ -1,7 +1,7 @@
 <?php
 //*** Connection to Oracle ***//
-//include_once("conn/c.php");
-$cae=oci_connect("ae","1","192.168.90.78:1521/xe");
+include_once("conn/c.php");
+//$cae=oci_connect("ae","1","192.168.90.78:1521/xe");
 
 //*** Insert Data Command ***//
 $strSQL = "INSERT INTO svrident ";

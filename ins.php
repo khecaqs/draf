@@ -13,7 +13,7 @@ include_once("conn/c.php");
 <H2> form input </H2>
 
 
-<form action="addsvr.php" name="frmAdd" method="POST">
+<form action="add.php" name="frmAddSvr" method="POST">
 <table width="600" border="1">
   <tr>
     <th width="91"> <div align="center">Kod ID </div></th>
@@ -30,12 +30,12 @@ include_once("conn/c.php");
     <td><div align="center"><input name="txtSvrDesc" type="text" size="20" maxlength="50" id="txtSvrDesc"></div></td>
   </tr>
 </table>
-<input type="submit" name="submit" value="submit">
+<input type="submit" name="svrident-submit" value="submit">
 </form>
 
 
 
-<form action="addora.php" name="frmAdd" method="POST">
+<form action="add.php" name="frmAddOra" method="POST">
 <table width="600" border="1">
   <tr>
     <th width="100%"> <div align="center">Login </div></th>
@@ -67,7 +67,7 @@ include_once("conn/c.php");
 	
 	 ?>
 
-		<select>
+		<select id="svrid" name="svrid">
 			<?php
 			while (($row = oci_fetch_array($stid, OCI_BOTH)) != false) {
 				
@@ -86,8 +86,8 @@ include_once("conn/c.php");
 
 	
 	</td>
-    <td align="right"><input name="txtSid" type="text" size="20" maxlength="50" id="txtSid"></td>
+    <td align="right"><input name="txtOraSid" type="text" size="20" maxlength="50" id="txtOraSid"></td>
   </tr>
 </table>
-<input type="submit" name="submit" value="submit">
+<input type="submit" name="oraident-submit" value="submit">
 </form>
