@@ -3,6 +3,7 @@
 include_once("conn/c.php");
 //$cae=oci_connect("ae","1","192.168.90.78:1521/xe");
 
+// ************** insert for oracle identiti ************** //
 if (!empty($_POST['oraident-submit'])) {
 	
 	$svrid = $_POST["svrid"];
@@ -17,9 +18,6 @@ if (!empty($_POST['oraident-submit'])) {
 	//*** Define Variable $objParse and $objExecute ***//
 	$objParse = oci_parse($cae, $strSQL);
 	$objExecute = oci_execute($objParse, OCI_DEFAULT);
-	
-	
-	var_dump ($strSQL);
 	
 	if($objExecute)
 	{
@@ -36,6 +34,8 @@ if (!empty($_POST['oraident-submit'])) {
 	//*** Close Connection to Oracle ***//
 	oci_close($cae);
 }
+
+// Insert for server identiti
 if (!empty($_POST['svrident-submit'])) {
 	
 	//*** Insert Data Command ***//

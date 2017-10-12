@@ -9,10 +9,34 @@ include_once("conn/c.php");
 
 ?>
 
+<h2> List server dari database </h2>
+
+<table width="600" border="1">
+  <tr>
+    <th width="91"> <div align="center">Kod ID </div></th>
+    <th width="160"> <div align="center">Nama </div></th>
+	<th width="97"> <div align="center">DNS</div></th>
+    <th width="198"> <div align="center">IP</div></th>
+    <th width="97"> <div align="center">Description</div></th>
+  </tr>
+  <?php 
+    $query = "select svrid,svrname,svrdns,svrip,svrdesc from svrident order by svrid asc";
+	$stid = oci_parse($cae, $query);
+	oci_execute($stid);
+		while ($row=oci_fetch_array($stid))
+		 {
+			echo "<tr>";
+			echo 	"<th width=91> <div align=center> $row[0] </div></th>";
+			echo 	"<th width=160> <div align=center>$row[1] </div></th>";
+			echo 	"<th width=97> <div align=center>$row[2]</div></th>";
+			echo 	"<th width=198> <div align=center>$row[3]</div></th>";
+			echo 	"<th width=300> <div align=center>$row[4]</div></th>";
+			echo "</tr> ";
+		 }
+  ?>
+</table>
 
 <H2> form input </H2>
-
-
 <form action="add.php" name="frmAddSvr" method="POST">
 <table width="600" border="1">
   <tr>

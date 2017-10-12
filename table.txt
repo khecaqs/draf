@@ -1,0 +1,28 @@
+svrident
+SVRID   NOT NULL NUMBER       
+SVRNAME          VARCHAR2(50) 
+SVRDNS           VARCHAR2(30) 
+SVRIP            VARCHAR2(15) 
+SVRDESC          VARCHAR2(80) 
+
+oraident
+Name    Null Type         
+------- ---- ------------ 
+SVRID        NUMBER       
+ORAID        VARCHAR2(50) 
+ORAPASS      VARCHAR2(30) 
+SID          VARCHAR2(20) 
+
+svrlogid
+Name    Null Type         
+------- ---- ------------ 
+SVRID        NUMBER       
+LOGNAME      VARCHAR2(50) 
+LOGPASS      VARCHAR2(30) 
+
+
+SVRID
+SVRNAME
+SVRDNS
+SVRIP
+SVRDESC
