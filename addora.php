@@ -3,11 +3,14 @@
 include_once("conn/c.php");
 //$cae=oci_connect("ae","1","192.168.90.78:1521/xe");
 
+$svrid = $_POST["svrid"];
+
+echo $svrid;
 //*** Insert Data Command ***//
-$strSQL = "INSERT INTO svrident ";
-$strSQL .="(SVRID,SVRNAME,SVRDNS,SVRIP,SVRDESC) ";
+$strSQL = "INSERT INTO oraident ";
+$strSQL .="(SVRID,ORAID,ORAPASS,SID) ";
 $strSQL .="VALUES ";
-$strSQL .="('".$_POST["txtSvrID"]."','".$_POST["txtSvrNama"]."','".$_POST["txtSvrDNS"]."','".$_POST["txtSvrIP"]."','".$_POST["txtSvrDesc"]."') ";
+$strSQL .="('$svrid','".$_POST["txtOraID"]."', '".$_POST["txtOraPass"]."','".$_POST["txtOraSid"]."') ";
 
 
 //*** Define Variable $objParse and $objExecute ***//
