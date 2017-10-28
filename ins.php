@@ -13,24 +13,32 @@ include_once("conn/c.php");
 
 <table width="600" border="1">
   <tr>
-    <th width="91"> <div align="center">Kod ID </div></th>
+    <th width="91"> <div align="center">ID </div></th>
     <th width="160"> <div align="center">Nama </div></th>
 	<th width="97"> <div align="center">DNS</div></th>
     <th width="198"> <div align="center">IP</div></th>
+    <th width="50"> <div align="center">Kegunaan</div></th>
     <th width="97"> <div align="center">Description</div></th>
   </tr>
   <?php 
-    $query = "select svrid,svrname,svrdns,svrip,svrdesc from svrident order by svrid asc";
+    $query = "select s.svrid,s.svrname,s.svrdns,s.svrip,u.svrusagename,s.svrdesc
+from SVRIDENT s, SVRUSAGE u
+where 
+s.SVRUSAGEID = u.SVRUSAGEID ";
+	
+	
 	$stid = oci_parse($cae, $query);
 	oci_execute($stid);
 		while ($row=oci_fetch_array($stid))
 		 {
 			echo "<tr>";
-			echo 	"<th width=91> <div align=center> $row[0] </div></th>";
+			echo 	"<th width=91> <div align=center> <a href='editsvr.php?edit=$row[0]'>$row[0] </a></div></th>";
 			echo 	"<th width=160> <div align=center>$row[1] </div></th>";
 			echo 	"<th width=97> <div align=center>$row[2]</div></th>";
 			echo 	"<th width=198> <div align=center>$row[3]</div></th>";
 			echo 	"<th width=300> <div align=center>$row[4]</div></th>";
+			echo 	"<th width=300> <div align=center>$row[5]</div></th>";
+			
 			echo "</tr> ";
 		 }
   ?>
@@ -40,18 +48,53 @@ include_once("conn/c.php");
 <form action="add.php" name="frmAddSvr" method="POST">
 <table width="600" border="1">
   <tr>
-    <th width="91"> <div align="center">Kod ID </div></th>
     <th width="160"> <div align="center">Nama </div></th>
 	<th width="97"> <div align="center">DNS</div></th>
     <th width="198"> <div align="center">IP</div></th>
+    <th width="198"> <div align="center">Kegunaan</div></th>
     <th width="97"> <div align="center">Description</div></th>
   </tr>
   <tr>
-    <td><div align="center"><input name="txtSvrID" type="text" size="4" maxlength="4" id="txtSvrID"></div></td>
     <td><input name="txtSvrNama" type="text" size="20" maxlength="30"></td>
 	<td><div align="center"><input name="txtSvrDNS" type="text" size="20" maxlength="50" id="txtSvrDNS"></div></td>
     <td><input name="txtSvrIP" type="text" size="15" maxlength="15" id="txtServer"></td>
-    <td><div align="center"><input name="txtSvrDesc" type="text" size="20" maxlength="50" id="txtSvrDesc"></div></td>
+    <td>
+	
+		<select name="txtSvrGuna" id="txtSvrGuna">
+									<?php
+																		
+										if (!$cae) {
+											$e = oci_error();
+											trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+										}
+
+										$query = "select svrusageid,svrusagename from svrusage";
+										$stid = oci_parse($cae, $query);
+										
+										if( $stid === false )
+										echo "SQL silap";
+
+										if( !oci_execute($stid) )
+										echo "Xleh execute";
+										
+										while (($row = oci_fetch_array($stid, OCI_BOTH)) != false) {
+											
+											$svrusageid = $row[0];
+											$svrusagename = $row[1];
+										  ?>
+										  
+										  <option value="<?php echo $svrusageid ; ?>"><?php echo $svrusagename ; ?> </option>
+											
+										<?php  
+										}
+										oci_free_statement($stid);
+										oci_close($cae);
+
+									?>
+						</select>
+	
+	</td>
+	    <td><div align="center"><input name="txtSvrDesc" type="text" size="20" maxlength="50" id="txtSvrDesc"></div></td>
   </tr>
 </table>
 <input type="submit" name="svrident-submit" value="submit">

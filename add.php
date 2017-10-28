@@ -38,11 +38,13 @@ if (!empty($_POST['oraident-submit'])) {
 // Insert for server identiti
 if (!empty($_POST['svrident-submit'])) {
 	
+	$SVRUSAGEID = $_POST["txtSvrGuna"];
+	
 	//*** Insert Data Command ***//
 	$strSQL = "INSERT INTO svrident ";
-	$strSQL .="(SVRID,SVRNAME,SVRDNS,SVRIP,SVRDESC) ";
+	$strSQL .="(SVRNAME,SVRDNS,SVRIP,SVRUSAGEID,SVRDESC) ";
 	$strSQL .="VALUES ";
-	$strSQL .="('".$_POST["txtSvrID"]."','".$_POST["txtSvrNama"]."','".$_POST["txtSvrDNS"]."','".$_POST["txtSvrIP"]."','".$_POST["txtSvrDesc"]."') ";
+	$strSQL .="('".$_POST["txtSvrNama"]."','".$_POST["txtSvrDNS"]."','".$_POST["txtSvrIP"]."','$SVRUSAGEID','".$_POST["txtSvrDesc"]."') ";
 	
 	
 	//*** Define Variable $objParse and $objExecute ***//
